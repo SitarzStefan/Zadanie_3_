@@ -5,46 +5,53 @@ namespace Zadanie_3_
 {
     public partial class FormDodaj : Form
     {
-        public string Imie { get; set; }
-        public string Nazwisko { get; set; }
-        public int Wiek { get; set; }
-        public string Stanowisko { get; set; }
+        public string Imie { get; private set; }
+        public string Nazwisko { get; private set; }
+        public int Wiek { get; private set; }
+        public string Stanowisko { get; private set; }
 
         public FormDodaj()
         {
             InitializeComponent();
 
-            comboStanowisko.Items.Add("Manager");
-            comboStanowisko.Items.Add("Programista");
-            comboStanowisko.Items.Add("Tester");
-
-            comboStanowisko.SelectedIndex = 0;
-
+            // PODPIĘCIE EVENTÓW
             buttonZatwierdz.Click += buttonZatwierdz_Click;
             buttonAnuluj.Click += buttonAnuluj_Click;
+
+            // opcjonalnie
+            comboStanowisko.Items.AddRange(new string[]
+            {
+                "Programista",
+                "Tester",
+                "Manager",
+                "Analityk"
+            });
+
+            comboStanowisko.SelectedIndex = 0;
         }
 
         private void buttonZatwierdz_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textImie.Text) || string.IsNullOrWhiteSpace(textNazwisko.Text))
+            if (string.IsNullOrWhiteSpace(textImie.Text) ||
+                string.IsNullOrWhiteSpace(textNazwisko.Text))
             {
-                MessageBox.Show("Imię i nazwisko nie mogą być puste!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Uzupełnij dane!");
                 return;
             }
 
             Imie = textImie.Text;
             Nazwisko = textNazwisko.Text;
             Wiek = (int)numericWiek.Value;
-            Stanowisko = comboStanowisko.Text;
+            Stanowisko = comboStanowisko.SelectedItem?.ToString();
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void buttonAnuluj_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

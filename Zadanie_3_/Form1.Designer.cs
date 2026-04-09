@@ -33,6 +33,7 @@
             btnZapis = new Button();
             btnOdczyt = new Button();
             dataGridView1 = new DataGridView();
+            btnXML = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -83,11 +84,21 @@
             dataGridView1.Size = new Size(300, 188);
             dataGridView1.TabIndex = 5;
             // 
+            // btnXML
+            // 
+            btnXML.Location = new Point(334, 206);
+            btnXML.Name = "btnXML";
+            btnXML.Size = new Size(94, 29);
+            btnXML.TabIndex = 6;
+            btnXML.Text = "Zapis XML";
+            btnXML.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(472, 270);
+            Controls.Add(btnXML);
             Controls.Add(dataGridView1);
             Controls.Add(btnOdczyt);
             Controls.Add(btnZapis);
@@ -105,5 +116,6 @@
         private Button btnZapis;
         private Button btnOdczyt;
         private DataGridView dataGridView1;
+        private Button btnXML;
     }
 }
